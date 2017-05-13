@@ -1,0 +1,27 @@
+version: '2'
+services:
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker
+    restart: unless-stopped
+    environment:
+      - TZ="Europe/London"
+      - PLEX_CLAIM="<PLEX_CLAIM>"
+    network_mode: host
+    volumes:
+      - <ROOT_PATH>/plex-config:/config
+      - <ROOT_PATH>/plex-transcode:/transcode
+      - <ROOT_PATH>/medias:/data
+
+  deluge:
+    container_name: deluge
+    image: linuxserver/deluge
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ="Europe/London"
+    network_mode: host
+    volumes:
+      - <ROOT_PATH>/medias:/downloads
+      - <ROOT_PATH>/deluge-config:/config
