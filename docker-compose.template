@@ -2,7 +2,7 @@ version: '2'
 services:
   plex:
     container_name: plex
-    image: plexinc/pms-docker
+    image: plexinc/pms-docker:plexpass
     restart: unless-stopped
     environment:
       - TZ="Europe/London"
